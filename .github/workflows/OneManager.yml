@@ -20,10 +20,10 @@ jobs:
       
     - name: Login IBM Cloud
       run: |
-        ibmcloud login -u ${{ secrets.MAIL2 }} -p ${{ secrets.PWD2 }} -r ${{ secrets.RGN2 }}
+        ibmcloud login -u ${{ secrets.OneManager_MAIL }} -p ${{ secrets.OneManager_PWD }} -r ${{ secrets.OneManager_RGN }}
     - name: Restart
       run: |
         ibmcloud target -g Default
         ibmcloud target --cf
         ibmcloud cf install
-        ibmcloud cf restart ${{ secrets.CFNAME2 }}
+        ibmcloud cf restart ${{ secrets.OneManager_CFNAME }}
