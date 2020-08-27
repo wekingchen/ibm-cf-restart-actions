@@ -2,28 +2,26 @@ name: OneList Auto Restart
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches: master
+  watch:
+    types: started
   schedule:
     - cron: 10 22 * * *
 
 jobs:
-  build:
+  IBM-Cloud-CF-APP-Restart:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install IBM CLI
-      run: curl -sL https://raw.githubusercontent.com/IBM-Bluemix/developer-tools-installer/master/linux-installer/idt-installer | bash
+    - name: Install CF CLI
+      run: |
+        curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github&version=v6" | tar -zx
+        sudo mv cf /usr/local/bin
       
-    - name: Login IBM Cloud
-      run: |
-        ibmcloud login -u ${{ secrets.OneList_MAIL }} -p ${{ secrets.OneList_PWD }} -r ${{ secrets.OneList_RGN }}
-    - name: Restart
-      run: |
-        ibmcloud target -g Default
-        ibmcloud target --cf
-        ibmcloud cf install
-        ibmcloud cf restart ${{ secrets.OneList_CFNAME }}
+    - name: Login CF
+      run: cf l -a https://api.${{ secrets.OneList_RGN }}.cf.cloud.ibm.com login -u ${{ secrets.OneList_MAIL }} -p ${{ secrets.OneManager_PWD }}
+      
+    - name: Restart CF APP
+      run: cf rs ${{ secrets.OneList_CFNAME }}
