@@ -1,5 +1,5 @@
 # ibm_cf_restart-actions
-使用Github Actions定时重启IBM Cloud Foundry 应用程序
+使用Github Actions定时重启IBM Cloud Foundry应用程序
 
 ## 使用之前，有几项准备工作
 1. IBMCloud的账号密码
@@ -19,7 +19,7 @@
 
 ### 3 确定Github Action正常工作
 
-点击修改任意文件后提交使Actions激活  
+~~点击修改任意文件后提交~~对自己的仓库点击**Star**使Actions激活  
 
 此前，可能需要点击**Pull requests**与**Projects**之间的**Action**进去点一下允许之类的
 
@@ -31,4 +31,4 @@ CFNAME====>cxkjntm
 
 ## 其他
 
-配置完毕，将会在每天的06:10重启Cloud Foundry应用程序
+配置完毕，将会在每天的04:15重启Cloud Foundry应用程序
