@@ -21,7 +21,7 @@ jobs:
         sudo mv cf /usr/local/bin
       
     - name: Login CF
-      run: cf l -a https://api.${{ secrets.OneList_RGN }}.cf.cloud.ibm.com login -u ${{ secrets.OneList_MAIL }} -p ${{ secrets.OneManager_PWD }}
+      run: cf l -a https://api.${{ secrets.OneList_RGN }}.cf.cloud.ibm.com login -u ${{ secrets.OneList_MAIL }} -p ${{ secrets.OneList_PWD }}
       
     - name: Restart CF APP
       run: cf rs ${{ secrets.OneList_CFNAME }}
